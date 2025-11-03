@@ -1,7 +1,5 @@
 # Speech-Emotion-Recognition-using-MFCC-and-Wav2Vec2
 
-# 🗣️ Speech Emotion Recognition using MFCC and Wav2Vec2
-
 This project focuses on detecting emotions from speech audio using two approaches:  
 1. A **baseline MFCC-based neural network**  
 2. A **transformer-based Wav2Vec2 model** for advanced audio feature extraction  
