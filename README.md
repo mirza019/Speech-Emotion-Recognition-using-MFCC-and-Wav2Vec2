@@ -17,17 +17,43 @@ To classify emotions such as **happy, sad, angry, calm, fearful, disgust, surpri
 
 ## 🧠 Models
 
-### 🔹 MFCC Baseline Model
-- **Features:** 40 MFCCs extracted using Librosa  
-- **Model:** 3-layer fully connected neural network (PyTorch)  
-- **Epochs:** 1000  
-- **Accuracy:** **70%**
+## 🧠 Approaches Implemented
 
-### 🔹 Wav2Vec2 Transformer Model
-- **Pretrained Model:** facebook/wav2vec2-base-960h  
-- **Feature Dimension:** 768  
-- **Training Status:** Running  
-- **Expected Accuracy:** 75–85%
+### 🔹 1. MFCC-based Baseline Model (Still Improving)
+This model extracts **Mel-Frequency Cepstral Coefficients (MFCCs)** and feeds them into a simple feedforward neural network.
+
+**Steps:**
+1. Load RAVDESS audio files using `librosa`
+2. Extract 40 MFCC features
+3. Normalize using `StandardScaler`
+4. Train a 3-layer **Fully Connected Neural Network (PyTorch)**  
+   - Linear(40 → 128) → ReLU → Dropout  
+   - Linear(128 → 64) → ReLU → Dropout  
+   - Linear(64 → 8) → Softmax  
+5. Evaluate on 25% test split
+
+**Results:**
+- **Epochs:** 1000  
+- **Accuracy:** **~70%**  
+- **Observation:** Stable learning and good generalization for small dataset.
+
+---
+
+### 🔹 2. Transformer-based Wav2Vec2 Model (ongoing)
+This advanced model uses **pretrained self-supervised embeddings** from `facebook/wav2vec2-base-960h`.
+
+**Steps:**
+1. Load `.wav` data and resample to 16kHz  
+2. Extract 768-dimensional audio embeddings via Wav2Vec2  
+3. Train a small classification head on top of frozen embeddings  
+4. Compare results with MFCC model  
+
+**Expected Outcome:**
+- Transformer models outperform classical MFCC features  
+- **Predicted Accuracy:** ~80–85% after training completion  
+
+---
+
 
 ## ⚙️ Requirements
 ```bash
